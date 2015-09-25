@@ -159,12 +159,11 @@ public class MainActivityFragment extends Fragment {
                                 //intent.putExtra(Intent.EXTRA_TEXT, currSel);
                                 intent.putExtra("currsel", currSel);
                                 startActivity(intent);
-                                //Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
                             }
                         });
                         Picasso.with(getActivity())
                                 .load(currentMovies.get(i * 2 + j).getImageUrl())
-                                .resize(575, 430)
+                                .resize(610, 445)
                                 .into(imv);
 
                     }
@@ -184,18 +183,14 @@ public class MainActivityFragment extends Fragment {
             }
             Log.e("uploadImg", "calling with params "+params[0]);
             final String sortBy = params[0]+".desc";
-            final String apiKey = "08158a0a95f48cf8eb04e0b22571a8d0";
+            final String apiKey = getResources().getString(R.string.api_key) ; // "08158a0a95f48cf8eb04e0b22571a8d0";
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
-
             try {
                 final String MOVIES_BASE_URL =
                         "http://api.themoviedb.org/3/discover/movie?";
                 final String SORT_PARAM = "sort_by";
                 final String API_PARAM = "api_key";
-
-                final String MOVIE_BASE_URL =
-                        "http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=08158a0a95f48cf8eb04e0b22571a8d0";
 
                 Uri builtUri = Uri.parse(MOVIES_BASE_URL).buildUpon()
                         .appendQueryParameter(SORT_PARAM, sortBy)
@@ -221,9 +216,7 @@ public class MainActivityFragment extends Fragment {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line + "\n");
                 }
-
                 if (buffer.length() == 0) {
-                    // Stream was empty.  No point in parsing.
                     return null;
                 }
                 MovieHelper movieData = new MovieHelper(buffer.toString(), params[0]);
@@ -231,8 +224,6 @@ public class MainActivityFragment extends Fragment {
             }
             catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
-                // If the code didn't successfully get the weather data, there's no point in attemping
-                // to parse it.
                 return null;
             } finally {
                 if (urlConnection != null) {
