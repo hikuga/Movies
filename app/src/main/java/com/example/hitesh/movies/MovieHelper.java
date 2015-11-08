@@ -41,6 +41,17 @@ public class MovieHelper {
         }
         return null;
     }
+    public static  ArrayList<String> getTrailerIds(String responseData)
+        throws JSONException{
+        ArrayList<String> results = new ArrayList<String>();
+        JSONObject respJson = new JSONObject(responseData);
+        JSONArray trailers = respJson.getJSONArray("results");
+        for(int i=0; i < trailers.length(); ++i){
+            results.add( trailers.getJSONObject(i).getString("key"));
+        }
+
+        return results;
+    }
     public ArrayList<Movie> setMovies(String responseData)
             throws JSONException {
         ArrayList<Movie> moviesList = new ArrayList<Movie>();

@@ -25,6 +25,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hitesh.movies.MainActivity" />
         </activity>
+
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".data.FavouritesProvider"
+            android:exported="false"
+            android:syncable="true"/>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     </application>
 
 </manifest>

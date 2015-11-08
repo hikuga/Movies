@@ -18,7 +18,9 @@ public class Movie implements Parcelable {
     private String title;
     private Double vote_average;
     private int vote_count;
-
+    private int localDBID;
+    private byte[] movie_poster;
+    private float app_user_ratings;
 
 
     public Movie(String adult, String id, String backdrop_path, String original_title, String overview,
@@ -37,6 +39,7 @@ public class Movie implements Parcelable {
         this.vote_count = vote_count;
     }
 
+    public Movie(){}
     private Movie(Parcel in) {
         this.adult = in.readString();
         this.id = in.readString();
@@ -52,7 +55,10 @@ public class Movie implements Parcelable {
         this.vote_count = in.readInt();
     }
 
-
+    public byte[] getMovie_poster(){ return movie_poster;}
+    void setMovie_poster(byte[] movie_poster){
+        this.movie_poster = movie_poster;
+    }
     public String getImageUrl() {
         return "http://image.tmdb.org/t/p/w185//" + this.backdrop_path;
     }
@@ -101,6 +107,9 @@ public class Movie implements Parcelable {
         return vote_count;
     }
 
+    public int getLocalDBID(){ return this.localDBID;}
+    public void setLocalDBID(int localDBID){this.localDBID = localDBID;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -133,5 +142,57 @@ public class Movie implements Parcelable {
             return new Movie[i];
         }
     };
+
+    public float getApp_user_ratings() {
+        return app_user_ratings;
+    }
+
+    public void setApp_user_ratings(float app_user_ratings) {
+        this.app_user_ratings = app_user_ratings;
+    }
+
+    public void setAdult(String adult) {
+        this.adult = adult;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setVote_average(Double vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
 }
 

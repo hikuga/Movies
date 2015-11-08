@@ -3,5 +3,6 @@
     <string name="main_activity">Popular Movies</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_detail">DetailActivity</string>
-    <string name="api_key"></string>
+    <string name="content_authority">com.example.hitesh.movies.data</string>
+    <string name="api_key">08158a0a95f48cf8eb04e0b22571a8d0</string>
 </resources>
